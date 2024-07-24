@@ -1,0 +1,19 @@
+#!/bin/bash
+
+check_application_status() {
+    local url="http://your-application-url"  # Replace with your actual application URL
+    local response_code=$(curl -sL -w "%{http_code}" "$url" -o /dev/null)
+    
+    if [ "$response_code" == "200" ]; then
+        echo "Application is UP. HTTP Status Code: $response_code"
+    else
+        echo "Application is DOWN. HTTP Status Code: $response_code"
+    fi
+}
+
+main() {
+    echo "Checking application status..."
+    check_application_status
+}
+
+main
